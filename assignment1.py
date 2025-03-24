@@ -40,7 +40,7 @@ def after(date: str) -> str:
     This function takes care of the number of days in February for leap year.
     This fucntion has been tested to work for year after 1582
     '''
-    str_year, str_month, str_day = date.split('-')
+'''    str_year, str_month, str_day = date.split('-')
     year = int(str_year)
     month = int(str_month)
     day = int(str_day)
@@ -61,6 +61,22 @@ def after(date: str) -> str:
 
     next_date = f"{year}-{to_month:02}-{to_day:02}"
     return next_date
+'''
+    str_year, str_month, str_day = date.split('-')
+    year = int(str_year)
+    month = int(str_month)
+    day = int(str_day)
+    mon_max_dict = mon_max(year)
+    tmp_day = day + 1
+    if tmp_day > mon_max_dict[month]:
+        tmp_day = 1
+        tmp_month = month + 1
+    else:
+        tmp_month = month
+    if tmp_month > 12:
+        tmp_month = 1
+        year += 1
+    return f"{year}-{tmp_month:02}-{tmp_day:02}"
 
 
 def usage():
