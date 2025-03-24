@@ -73,7 +73,7 @@ def usage():
     "Print a usage message to the user"
     print("Usage: python3 assignment1.py start_date end_date")
     print("Example: python3 assignment1.py 2023-05-01 2023-05-30")
-
+    sys.exit(1)
 
 def leap_year(year: int) -> bool:
     "return True if the year is a leap year"
@@ -124,8 +124,16 @@ def day_count(start_date: str, stop_date: str) -> int:
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         usage()
-        sys.exit(1)
+
     start_date = sys.argv[1]
     stop_date = sys.argv[2]
+
+    if not valid_date(start_date) or not valid_date(stop_date):
+        print("Error: Invalid date format. Use YYYY-MM-DD")
+        usage()
+    if start_date > stop_date:
+        print("Error: Start date must be earlier than the end date.")
+        usage()
+
     weekend_days = day_count(start_date, stop_date)
     print(f"The number of weekend days between {start_date} and {stop_date} is {weekend_days}.")
