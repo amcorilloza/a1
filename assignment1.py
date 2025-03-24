@@ -29,7 +29,11 @@ def day_of_week(year: int, month: int, date: int) -> str:
 
 def mon_max(month:int, year:int) -> int:
     "returns the maximum day for a given month. Includes leap year check"
-    ...
+    feb_max = 29 if leap_year(year) else 28
+    return {
+        1: 31, 2: feb_max, 3: 31, 4: 30, 5: 31, 6: 30,
+        7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31
+    }
 
 
 def after(date: str) -> str:
