@@ -93,19 +93,19 @@ def day_count(start_date: str, stop_date: str) -> int:
     stop_year, stop_month, stop_day = map(int, stop_date.split('-'))
 
     weekend_count = 0
-    current_year = start_year
-    current_month = start_month
-    current_day = start_day
+    current_date = f"{start_year}-{start_month:02}-{start_day:02}"
 
-    while current_year < stop_year or (current_year == stop_year and (current_month < stop_month or (current_month == stop_month and current_day <= stop_day))):
+    while True:
         weekday = day_of_week(current_year, current_month, current_day)
 
         if weekday == 'sat' or weekday == 'sun':
             weekend_count += 1
 
-        current_date = f"{current_year}-{current_month:02}-{current_day:02}"
-        next_day = after(current_date)
-        current_year, current_month, current_day = map(int, next_day.split('-'))
+        next_date = after(current_date)
+        current_year, current_month, current_day = map(int, next_date.split('-'))
+
+        if current_year == stop_year and current_month == stop_month and current_day == stop_day:
+            break
 
     return weekend_count
 
