@@ -53,7 +53,6 @@ def after(date: str) -> str:
         to_day = tmp_day
         tmp_month = month + 0
 
-
     if tmp_month > 12:
         to_month = 1
         year = year + 1
@@ -70,7 +69,14 @@ def usage():
 
 def leap_year(year: int) -> bool:
     "return True if the year is a leap year"
-
+    if year % 4 == 0:
+        if year % 100 == 0:
+            if year % 400 == 0:
+                return True
+            else:
+                return False
+        return True
+    return False
 
 def valid_date(date: str) -> bool:
     "check validity of date and return True if valid"
